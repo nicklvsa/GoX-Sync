@@ -1,0 +1,20 @@
+version: '3.7'
+services: 
+    gox-sync:
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        ports: 
+            - 1819:1819
+        depends_on: 
+            - mongo
+    mongo:
+        image: mongo
+        ports: 
+            - 27017:27017
+        volumes:
+            - db-data:/data/db
+
+volumes:
+    db-data:
+        driver: local
